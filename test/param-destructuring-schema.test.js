@@ -27,6 +27,15 @@ describe("paramDestructuringSchema", () => {
     ).toEqual({ 0: { foo: null }, length: 1 });
   });
 
+  it("should ignore dependencies reffed in function bodies", () => {
+    expect(
+      paramDestructuringSchema(({ foo }) => {
+        // blah blah code blah blah
+        foo.whatever()
+      })
+    ).toEqual({ 0: { foo: null }, length: 1 });
+  });
+
   it("should handle array destructuring in params", () => {
     expect(
       paramDestructuringSchema(({ foo }, [bar, baz]) => {

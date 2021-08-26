@@ -44,8 +44,8 @@ const accessProxy = (obj, memo = {}, prevProp = "", options = {}) => {
 
       memo[prop] = got || {};
 
-      if (prop === options.finalParamToken) {
-        throw new Error("Final token " + options.finalParamToken);
+      if (prop === options.lastParamToken) {
+        throw new Error("Final token " + options.lastParamToken);
       }
 
       return typeof got === "object"

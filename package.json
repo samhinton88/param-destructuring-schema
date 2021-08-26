@@ -1,0 +1,12 @@
+{
+  "name": "param-destructuring-schema",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}

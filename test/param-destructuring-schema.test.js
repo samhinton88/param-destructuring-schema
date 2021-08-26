@@ -1,4 +1,4 @@
-const phantasm = require("..");
+const paramDestructuringSchema = require("..");
 
 const toGhost = (
   {
@@ -18,10 +18,10 @@ const toGhost = (
   // code for the function
 };
 
-describe("phantasm", () => {
+describe("paramDestructuringSchema", () => {
   it("should handle simple params", () => {
     expect(
-      phantasm(({ foo }) => {
+      paramDestructuringSchema(({ foo }) => {
         // blah blah code blah blah
       })
     ).toEqual({ 0: { foo: null }, length: 1 });
@@ -29,20 +29,20 @@ describe("phantasm", () => {
 
   it("should handle array destructuring in params", () => {
     expect(
-      phantasm(({ foo }, [bar, baz]) => {
+      paramDestructuringSchema(({ foo }, [bar, baz]) => {
         // blah blah code blah blah
       })
     ).toEqual({ 0: { foo: null }, 1: { 0: null, 1: null }, length: 2 });
 
     expect(
-      phantasm(([bar, baz], { foo }) => {
+      paramDestructuringSchema(([bar, baz], { foo }) => {
         // blah blah code blah blah
       })
     ).toEqual({ 0: { 0: null, 1: null }, 1: { foo: null }, length: 2 });
   });
 
   it("should sniff out a schema from a function with complex params", () => {
-    const memo = phantasm(toGhost);
+    const memo = paramDestructuringSchema(toGhost);
     expect(memo).toEqual({
       0: {
         // <- argument 1
